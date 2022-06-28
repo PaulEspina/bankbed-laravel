@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\BankAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,5 @@ Route::group([
     'middleware'    => ['auth'],
 ], function() {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::resource('bank-accounts', BankAccountController::class);
 });

@@ -12,6 +12,9 @@
         <div class="container">
             @yield('content')
             <ul>
+                @if(Session::has('message'))
+                {{Session::get('message')}}
+                @endif
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach

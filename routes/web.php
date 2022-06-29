@@ -30,6 +30,8 @@ Route::group([
 ], function() {
     Route::get('/', [SiteController::class, 'index'])->name('index');
     Route::get('profile', [SiteController::class, 'profile'])->name('profile');
+    Route::get('withdraw', [SiteController::class, 'withdraw'])->name('withdraw');
+    Route::post('withdraw/submit', [SiteController::class, 'submitWithdraw'])->name('withdraw.submit');
 });
 
 Route::group([

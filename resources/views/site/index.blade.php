@@ -7,4 +7,7 @@
     <button>
         <a href="{{ route('site.profile') }}">Profile</a>
     </button>
+    <button>
+        <a href="{{ route('site.withdraw') }}">Withdraw</a>
+    </button>
 @endsection

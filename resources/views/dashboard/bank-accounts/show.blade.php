@@ -10,7 +10,8 @@
 
     <div>
         <label><strong>User</strong></label>
-        <p>{{ $bankAccount->user->username }}</p>
+        <p>ID: {{ $bankAccount->user->id }}</p>
+        <p>Username: {{ $bankAccount->user->username }}</p>
     </div>
     <div>
         <label><strong>Account Number</strong></label>

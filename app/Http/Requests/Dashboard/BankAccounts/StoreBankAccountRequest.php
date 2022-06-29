@@ -25,8 +25,8 @@ class StoreBankAccountRequest extends FormRequest
     {
         return [
             'user_id'           => 'required|integer|exists:users,id',
-            'account_number'    => 'string|unique:bank_accounts',
-            'balance'           => 'numeric',
+            'account_number'    => 'nullable|string|unique:bank_accounts',
+            'balance'           => 'nullable|numeric',
         ];
     }
 }

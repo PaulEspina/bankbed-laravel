@@ -69,11 +69,11 @@ class BankAccountController extends Controller
 
         if(BankAccount::where('id', '!=', $bankAccount->id)->where('account_number', $data['account_number'])->first())
         {
-            return back();
+            return back()->with(['errors' => collect(['Account number is not unique'])]);
         }
 
         $bankAccount->user_id           = $data['user_id'] ?? $bankAccount->user_id;
-        $bankAccount->account_number    = $data['account_number'] ??  $bankAccount->account_number;
+        $bankAccount->account_number    = $data['account_number'];
         $bankAccount->balance           = $data['balance'] ?? $bankAccount->balance;
         $bankAccount->save();
 

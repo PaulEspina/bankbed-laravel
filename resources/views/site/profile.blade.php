@@ -3,6 +3,7 @@
 @section('title', 'Welcome')
  
 @section('content')
+    <h1>Profile</h1>
     <button>
         <a href="{{ route('site.index') }}">Back</a>
     </button>

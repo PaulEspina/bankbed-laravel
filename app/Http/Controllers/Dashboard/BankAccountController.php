@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use DB;
 
 use App\Models\BankAccount;
-use App\Http\Requests\StoreBankAccountRequest;
-use App\Http\Requests\UpdateBankAccountRequest;
+use App\Http\Requests\Dashboard\BankAccounts\StoreBankAccountRequest;
+use App\Http\Requests\Dashboard\BankAccounts\UpdateBankAccountRequest;
 
 class BankAccountController extends Controller
 {
@@ -101,6 +101,11 @@ class BankAccountController extends Controller
         DB::beginTransaction();
 
         $data = $request->validated();
+
+        if(BankAccount::where('id', '!=', $bankAccount->id)->where('account_number', $data['account_number'])->first())
+        {
+            return back();
+        }
 
         $bankAccount->user_id           = $data['user_id'] ?? $bankAccount->user_id;
         $bankAccount->account_number    = $data['account_number'] ??  $bankAccount->account_number;

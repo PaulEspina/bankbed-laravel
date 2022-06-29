@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Dashboard\BankAccounts;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBankAccountRequest extends FormRequest
+class UpdateBankAccountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class StoreBankAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'           => 'required|integer|exists:users,id',
-            'account_number'    => 'string|unique:bank_accounts',
+            'user_id'           => 'integer|exists:users,id',
+            'account_number'    => 'string',
             'balance'           => 'numeric',
         ];
     }

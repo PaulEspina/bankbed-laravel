@@ -14,4 +14,9 @@
     <div class="div">
         <input id="submit" type="submit">
     </div>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
 </form>

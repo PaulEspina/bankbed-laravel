@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
-use App\Http\Requests\Auth\LoginRequest;
-
 class AuthController extends Controller
 {
     public function showLogin()
@@ -14,17 +12,15 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
-        $user = $request->validated();
-
-        if(Auth::attempt($user))
+        if(Auth::attempt(['username' => $request['username'], 'password' => $request['password']]))
         {
             return redirect('/');
         }
         else
         {
-            return back()->withInput();
+            return back()->with(['errors' => collect(['Wrong username or password'])]);
         }
     }
 

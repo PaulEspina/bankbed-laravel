@@ -25,7 +25,9 @@ class SiteController extends Controller
 
     public function profile()
     {
-        return view('site.profile');
+        $bankAccounts = BankAccount::where('user_id', Auth::user()->id)->get();
+        $transactions = Transaction::where('user_id', Auth::user()->id)->get();
+        return view('site.profile')->with(['bankAccounts' => $bankAccounts, 'transactions' => $transactions]);
     }
 
     public function withdraw()

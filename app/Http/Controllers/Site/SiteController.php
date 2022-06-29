@@ -7,15 +7,20 @@ use Illuminate\Http\Request;
 
 use Auth;
 
-class HomeController extends Controller
+class SiteController extends Controller
 {
-    public function welcome()
+    public function index()
     {
         $user = Auth::user();
         if($user->role == 'admin')
         {
             return redirect('/dashboard');
         }
-        return view('site.welcome');
+        return view('site.index');
+    }
+
+    public function profile()
+    {
+        return view('site.profile');
     }
 }

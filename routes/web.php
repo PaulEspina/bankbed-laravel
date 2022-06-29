@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\SiteController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BankAccountController;
@@ -28,7 +28,8 @@ Route::group([
     'as'            => 'site.',
     'middleware'    => ['auth'],
 ], function() {
-    Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+    Route::get('/', [SiteController::class, 'index'])->name('index');
+    Route::get('profile', [SiteController::class, 'profile'])->name('profile');
 });
 
 Route::group([

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('bank_accounts', function (Blueprint $table) {
             $table->id();
             $table->integer("user_id");
-            $table->string("account_number");
+            $table->string("account_number")->unique();
             $table->decimal("balance", 19, 3)->default(0.0);
             $table->timestamps();
         });

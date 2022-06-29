@@ -24,9 +24,9 @@ class UpdateBankAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'           => 'integer|exists:users,id',
-            'account_number'    => 'string',
-            'balance'           => 'numeric',
+            'user_id'           => 'nullable|integer|exists:users,id',
+            'account_number'    => 'nullable|string',
+            'balance'           => 'nullable|numeric',
         ];
     }
 }

@@ -11,6 +11,11 @@
  
         <div class="container">
             @yield('content')
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     </body>
 </html>

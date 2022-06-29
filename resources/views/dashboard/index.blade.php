@@ -10,4 +10,7 @@
     <button>
         <a href="{{ route('dashboard.bank-accounts.index') }}">Bank Accounts</a>
     </button>
+    <button>
+        <a href="{{ route('dashboard.transactions.index') }}">Transactions</a>
+    </button>
 @endsection

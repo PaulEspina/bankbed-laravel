@@ -7,6 +7,7 @@ use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\BankAccountController;
+use App\Http\Controllers\Dashboard\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,5 @@ Route::group([
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::resource('users', UserController::class);
     Route::resource('bank-accounts', BankAccountController::class);
+    Route::resource('transactions', TransactionController::class);
 });

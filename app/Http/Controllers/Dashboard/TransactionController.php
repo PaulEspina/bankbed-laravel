@@ -29,6 +29,6 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        return view('dashboard.transactions.show')->with(['transactionsuser' => $transaction]);
+        return view('dashboard.transactions.show')->with(['transaction' => $transaction]);
     }
 }

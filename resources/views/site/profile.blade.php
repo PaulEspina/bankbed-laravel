@@ -50,4 +50,31 @@
             </tbody>
         </table>
     </div>
+    <div>
+        <h3>Transaction History</h3>
+        <table>
+            <thead>
+                <tr>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Amount</th>
+                <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($transactions as $key => $transaction)
+                <tr key={{ $key }}>
+                <td>{{ $transaction->sender }}</td>
+                <td>{{ $transaction->receiver }}</td>
+                <td>{{ $transaction->amount }}</td>
+                <td>{{ $transaction->type }}</td>
+                </tr>
+                @empty
+                <tr>
+                <td colspan="100%">---</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 @endsection

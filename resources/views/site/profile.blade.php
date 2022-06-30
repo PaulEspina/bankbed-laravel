@@ -59,6 +59,7 @@
                 <th>Receiver</th>
                 <th>Amount</th>
                 <th>Type</th>
+                <th>Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +69,7 @@
                 <td>{{ $transaction->receiver }}</td>
                 <td>{{ $transaction->amount }}</td>
                 <td>{{ $transaction->type }}</td>
+                <td>{{ date_format($transaction->created_at,'m/d/Y') }}</td>
                 </tr>
                 @empty
                 <tr>

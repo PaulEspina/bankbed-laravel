@@ -32,6 +32,8 @@ Route::group([
     Route::get('profile', [SiteController::class, 'profile'])->name('profile');
     Route::get('withdraw', [SiteController::class, 'withdraw'])->name('withdraw');
     Route::post('withdraw/submit', [SiteController::class, 'submitWithdraw'])->name('withdraw.submit');
+    Route::get('deposit', [SiteController::class, 'deposit'])->name('deposit');
+    Route::post('deposit/submit', [SiteController::class, 'submitDeposit'])->name('deposit.submit');
 });
 
 Route::group([

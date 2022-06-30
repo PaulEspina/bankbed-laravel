@@ -3,7 +3,7 @@
 @section('title', 'Transactions')
  
 @section('content')
-    <h1>Users</h1>
+    <h1>Transactions</h1>
     
     <button>
         <a href="{{ route('dashboard.index') }}">Back</a>

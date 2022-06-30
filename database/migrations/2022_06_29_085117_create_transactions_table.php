@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('sender')->nullable();
             $table->string('receiver')->nullable();
             $table->decimal('amount', 19, 3);
+            $table->decimal('running_balance', 19, 3);
             $table->string('type');
             $table->timestamps();
         });

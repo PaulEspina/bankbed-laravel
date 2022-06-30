@@ -15,7 +15,7 @@
     </div>
     <div>
         {{Form::label('amount', 'Amount')}}
-        {{Form::number('amount')}}
+        {{Form::number('amount', null, ['step' => 'any'])}}
     </div>
     <button type="submit">Submit</button>
     {{Form::close()}}

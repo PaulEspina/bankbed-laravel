@@ -18,7 +18,13 @@ class BankAccountSeeder extends Seeder
     {
         BankAccount::create([
             'user_id'           => 6,
-            'account_number'    => '2022-000000000001',
+            'account_number'    => '2022-000006-0',
+            'balance'           => 200.0,
+        ]);
+        BankAccount::create([
+            'user_id'           => 7,
+            'account_number'    => '2022-000007-0',
+            'balance'           => 200.0,
         ]);
     }
 }

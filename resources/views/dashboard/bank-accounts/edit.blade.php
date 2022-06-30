@@ -19,7 +19,7 @@
     </div>
     <div>
         {{Form::label('balance', 'Balance')}}
-        {{Form::number('balance')}}
+        {{Form::number('balance', null, ['step' => 'any'])}}
     </div>
     <button type="submit">Submit</button>
     {{Form::close()}}

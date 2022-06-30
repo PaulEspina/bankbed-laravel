@@ -26,19 +26,20 @@ class BankAccountController extends Controller
         DB::beginTransaction();
         $data = $request->validated();
 
+        $bankAccounts = BankAccount::where('user_id', $data['user_id'])->get();
+
         $year = now()->year;
         $userId = $data['user_id'];
         $userId = "$userId";
-        if(strlen($userId) < 12)
+        if(strlen($userId) < 6)
         {
-            $zeroesToAdd = 12 - strlen($userId);
+            $zeroesToAdd = 6 - strlen($userId);
             for($i = 0; $i < $zeroesToAdd; $i++)
             {
                 $userId = "0" . $userId;
             }
-            $userId = substr($userId, -7);
         }
-        $accountNumber = $year . "-" . $userId;
+        $accountNumber = $year . "-" . $userId . "-" . $bankAccounts->count();
 
         $bankAccount = new BankAccount();
         $bankAccount->user_id           = $data['user_id'];

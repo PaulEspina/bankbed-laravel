@@ -17,6 +17,7 @@
                 <th>Sender</th>
                 <th>Receiver</th>
                 <th>Amount</th>
+                <th>Running Balance</th>
                 <th>Type</th>
                 <th>Updated At</th>
                 <th>Created At</th>
@@ -31,6 +32,7 @@
                 <td>{{ $transaction->sender }}</td>
                 <td>{{ $transaction->receiver }}</td>
                 <td>{{ $transaction->amount }}</td>
+                <td>{{ $transaction->running_balance }}</td>
                 <td>{{ $transaction->type }}</td>
                 <td>{{ date_format($transaction->updated_at,'m/d/Y') }}</td>
                 <td>{{ date_format($transaction->created_at,'m/d/Y') }}</td>

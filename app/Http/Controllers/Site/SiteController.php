@@ -28,10 +28,7 @@ class SiteController extends Controller
     public function profile()
     {
         $bankAccounts = BankAccount::where('user_id', Auth::user()->id)->get();
-        $transactions = Transaction::where('user_id', Auth::user()->id)
-                                   ->orWhere('sender', $bankAccounts->pluck('account_number', 'account_number'))
-                                   ->orWhere('receiver', $bankAccounts->pluck('account_number', 'account_number'))
-                                   ->get();
+        $transactions = Transaction::where('user_id', Auth::user()->id)->get();
         return view('site.profile')->with(['bankAccounts' => $bankAccounts, 'transactions' => $transactions]);
     }
 
@@ -47,14 +44,16 @@ class SiteController extends Controller
 
         $data = $request->validated();
 
+        $bankAccount = BankAccount::where('account_number', $data['account_number'])->first();
+
         $transaction = new Transaction;
-        $transaction->user_id   = Auth::user()->id;
-        $transaction->sender    = $data['account_number'];
-        $transaction->amount    = $data['amount'];
+        $transaction->user_id           = Auth::user()->id;
+        $transaction->sender            = $data['account_number'];
+        $transaction->amount            = $data['amount'];
+        $transaction->running_balance   = $bankAccount->balance - $data['amount'];
         $transaction->type      = 'withdraw';
         if($transaction->save())
         {
-            $bankAccount = BankAccount::where('account_number', $data['account_number'])->first();
             $bankAccount->balance = $bankAccount->balance - $data['amount'];
             $bankAccount->save();
         }
@@ -76,14 +75,16 @@ class SiteController extends Controller
 
         $data = $request->validated();
 
+        $bankAccount = BankAccount::where('account_number', $data['account_number'])->first();
+
         $transaction = new Transaction;
-        $transaction->user_id   = Auth::user()->id;
-        $transaction->receiver  = $data['account_number'];
-        $transaction->amount    = $data['amount'];
-        $transaction->type      = 'deposit';
+        $transaction->user_id           = Auth::user()->id;
+        $transaction->receiver          = $data['account_number'];
+        $transaction->amount            = $data['amount'];
+        $transaction->running_balance   = $bankAccount->balance + $data['amount'];
+        $transaction->type              = 'deposit';
         if($transaction->save())
         {
-            $bankAccount = BankAccount::where('account_number', $data['account_number'])->first();
             $bankAccount->balance = $bankAccount->balance + $data['amount'];
             $bankAccount->save();
         }
@@ -105,19 +106,31 @@ class SiteController extends Controller
 
         $data = $request->validated();
 
+        $sender = BankAccount::where('account_number', $data['account_number'])->first();
+        $receiver = BankAccount::where('account_number', $data['receiver'])->first();
+
         $transaction = new Transaction;
-        $transaction->user_id   = Auth::user()->id;
-        $transaction->sender    = $data['account_number'];
-        $transaction->receiver  = $data['receiver'];
-        $transaction->amount    = $data['amount'];
-        $transaction->type      = 'transfer';
+        $transaction->user_id           = Auth::user()->id;
+        $transaction->sender            = $data['account_number'];
+        $transaction->receiver          = $data['receiver'];
+        $transaction->amount            = $data['amount'];
+        $transaction->running_balance   = $sender->balance - $data['amount'];
+        $transaction->type              = 'transfer';
         if($transaction->save())
         {
-            $sender = BankAccount::where('account_number', $data['account_number'])->first();
             $sender->balance = $sender->balance - $data['amount'];
             $sender->save();
-            
-            $receiver = BankAccount::where('account_number', $data['receiver'])->first();
+        }
+
+        $transaction = new Transaction;
+        $transaction->user_id           = $receiver->user->id;
+        $transaction->sender            = $data['account_number'];
+        $transaction->receiver          = $data['receiver'];
+        $transaction->amount            = $data['amount'];
+        $transaction->running_balance   = $receiver->balance + $data['amount'];
+        $transaction->type              = 'transfer';
+        if($transaction->save())
+        {
             $receiver->balance = $receiver->balance + $data['amount'];
             $receiver->save();
         }

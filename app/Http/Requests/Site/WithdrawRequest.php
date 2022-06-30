@@ -26,8 +26,8 @@ class WithdrawRequest extends FormRequest
     public function rules()
     {
         return [
-            'account_number'    =>  'required|string|exists:bank_accounts',
-            'amount'            => [
+            'account_number'    => 'required|string|exists:bank_accounts',
+            'amount'            => ['numeric',
                 function($attribute, $value, $fail)
                 {
                     $bankAccount = BankAccount::where('account_number', $this->input('account_number'))->first();
@@ -35,7 +35,7 @@ class WithdrawRequest extends FormRequest
                     {
                         return $fail("Not enough balance.");
                     }
-                }
+                },
             ]
         ];
     }

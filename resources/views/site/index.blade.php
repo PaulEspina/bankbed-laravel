@@ -13,4 +13,7 @@
     <button>
         <a href="{{ route('site.deposit') }}">Deposit</a>
     </button>
+    <button>
+        <a href="{{ route('site.transfer') }}">Transfer</a>
+    </button>
 @endsection

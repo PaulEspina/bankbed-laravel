@@ -11,6 +11,7 @@ use App\Models\Transaction;
 use App\Models\BankAccount;
 use App\Http\Requests\Site\WithdrawRequest;
 use App\Http\Requests\Site\DepositRequest;
+use App\Http\Requests\Site\TransferRequest;
 
 class SiteController extends Controller
 {
@@ -27,7 +28,10 @@ class SiteController extends Controller
     public function profile()
     {
         $bankAccounts = BankAccount::where('user_id', Auth::user()->id)->get();
-        $transactions = Transaction::where('user_id', Auth::user()->id)->get();
+        $transactions = Transaction::where('user_id', Auth::user()->id)
+                                   ->orWhere('sender', $bankAccounts->pluck('account_number', 'account_number'))
+                                   ->orWhere('receiver', $bankAccounts->pluck('account_number', 'account_number'))
+                                   ->get();
         return view('site.profile')->with(['bankAccounts' => $bankAccounts, 'transactions' => $transactions]);
     }
 
@@ -82,6 +86,40 @@ class SiteController extends Controller
             $bankAccount = BankAccount::where('account_number', $data['account_number'])->first();
             $bankAccount->balance = $bankAccount->balance + $data['amount'];
             $bankAccount->save();
+        }
+
+        DB::commit();
+
+        return back()->with(['message' => 'Success!']);
+    }
+
+    public function transfer()
+    {
+        $bankAccounts = BankAccount::where('user_id', Auth::user()->id)->get()->pluck('account_number', 'account_number');
+        return view('site.transfer')->with('bankAccounts', $bankAccounts);
+    }
+
+    public function submitTransfer(TransferRequest $request)
+    {
+        DB::beginTransaction();
+
+        $data = $request->validated();
+
+        $transaction = new Transaction;
+        $transaction->user_id   = Auth::user()->id;
+        $transaction->sender    = $data['account_number'];
+        $transaction->receiver  = $data['receiver'];
+        $transaction->amount    = $data['amount'];
+        $transaction->type      = 'transfer';
+        if($transaction->save())
+        {
+            $sender = BankAccount::where('account_number', $data['account_number'])->first();
+            $sender->balance = $sender->balance - $data['amount'];
+            $sender->save();
+            
+            $receiver = BankAccount::where('account_number', $data['receiver'])->first();
+            $receiver->balance = $receiver->balance + $data['amount'];
+            $receiver->save();
         }
 
         DB::commit();

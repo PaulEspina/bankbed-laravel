@@ -3,26 +3,56 @@
 @section('title', 'Bank Accounts')
  
 @section('content')
-    <h1>Create Bank Account</h1>
-    <button>
-        <a href="{{ route('dashboard.bank-accounts.index') }}">Back</a>
-    </button>
-
-    {{Form::open(['route' => 'dashboard.bank-accounts.store'])}}
-    <div>
-        {{Form::label('user_id', 'User ID')}}
-        {{Form::text('user_id')}}
+<div class="container-fluid bg">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="form-fields">
+                <form method="POST" action="{{ route('dashboard.bank-accounts.store') }}" class="form-container mt-5 border p-4 bg-light shadow">
+                @csrf
+                    <h3 class="mb-3 text-secondary">Create Bank Account</h3>
+                    <div class="row">
+                        <div class="mb-3 col-md">
+                            <label>User ID<span class="text-danger">*</span></label>
+                            <input type="text" name="user_id" class="form-control" placeholder="Ex. 69" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md">
+                            <label>Account Number</label>
+                            <input type="text" name="account_number" class="form-control" placeholder="Ex. 2022-321123-0">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md">
+                            <label>Balance</label>
+                            <input type="number" step="any" name="balance" class="form-control" placeholder="Ex. 200.50">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md">
+                            <a href="{{ route('dashboard.bank-accounts.index') }}" style="text-decoration:none">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary" type="button">BACK</button>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success" type="submit">CREATE</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div>
-        {{Form::label('account_number', 'Account Number')}}
-        {{Form::text('account_number')}}
-    </div>
-    <div>
-        {{Form::label('balance', 'Balance')}}
-        {{Form::number('balance', null, ['step' => 'any'])}}
-    </div>
-    <button type="submit">Submit</button>
-    {{Form::close()}}
 </div>
+
+@push('head')
+    <link rel="stylesheet" href="{{ asset('css/card.css')}}" />
+@endpush
+
+@push('scripts')
+@endpush
 
 @endsection

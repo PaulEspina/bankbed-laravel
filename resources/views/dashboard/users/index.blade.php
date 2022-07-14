@@ -15,7 +15,7 @@
                 <th>Role</th>
                 <th>Update At</th>
                 <th>Created At</th>
-                <th>Action</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

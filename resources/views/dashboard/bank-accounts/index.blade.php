@@ -13,7 +13,7 @@
                 <th>Balance</th>
                 <th>Created At</th>
                 <th>Updated At</th>
-                <th>Action</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>

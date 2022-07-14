@@ -10,11 +10,6 @@
     </head>
     <body>
         <div>
-            @if(Session::has('message'))
-            {{Session::get('message')}}
-            @endif
-        </div>
-        <div>
             @yield('content')
         </div>
 

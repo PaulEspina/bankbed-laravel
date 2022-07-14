@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="form-floating my-3">
-                        {{Form::number('amount', null, ['class' => 'form-control', 'placeholder' => 200.00])}}
+                        {{Form::number('amount', null, ['class' => 'form-control', 'placeholder' => 200.00, 'step' => 'any'])}}
                         <label for="amount">Amount</label>
                     </div>
                     <div class="d-grid gap-2">

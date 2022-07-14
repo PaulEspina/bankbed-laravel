@@ -1,6 +1,6 @@
 @extends('layouts.app')
  
-@section('title', 'ShowTransactions')
+@section('title', 'Show Transactions')
  
 @section('content')
     <h1>Show Transaction</h1>

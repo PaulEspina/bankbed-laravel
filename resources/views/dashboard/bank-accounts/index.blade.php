@@ -23,7 +23,7 @@
                 @if(isset($bankAccount->user))
                 <td>{{ $bankAccount->user->username }}</td>
                 @else
-                <td>NULL</td>
+                <td>User ID {{ $bankAccount->user_id }} (Deleted)</td>
                 @endif
                 <td>{{ $bankAccount->account_number }}</td>
                 <td>{{ $bankAccount->balance }}</td>

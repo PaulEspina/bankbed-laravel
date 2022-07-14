@@ -14,20 +14,20 @@
                     @endforeach
                     <div class="row">
                         <div class="mb-3 col-md">
-                            <label>User ID</label>
-                            <input type="text" name="user_id" class="form-control" placeholder="Ex. 69" value="{{ $bankAccount->user_id }}">
+                            <label for="user_id">User ID</label>
+                            {{Form::text('user_id', null, ['class' => 'form-control', 'placeholder' => 'Ex. 69'])}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md">
-                            <label>Account Number</label>
-                            <input type="text" name="account_number" class="form-control" placeholder="Ex. 2022-321123-0" value="{{ $bankAccount->account_number }}">
+                            <label for="account_number">Account Number</label>
+                            {{Form::text('account_number', null, ['class' => 'form-control', 'placeholder' => 'Ex. 2022-321123-0'])}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md">
-                            <label>Balance</label>
-                            <input type="number" step="any" name="balance" class="form-control" placeholder="Ex. 200.50" value="{{ $bankAccount->balance }}">
+                            <label for="balance">Balance</label>
+                            {{Form::number('balance', null, ['class' => 'form-control', 'placeholder' => 'Ex. 200.50', 'step' => 'any'])}}
                         </div>
                     </div>
                     <div class="row mt-3">

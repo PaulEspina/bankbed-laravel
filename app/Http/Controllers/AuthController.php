@@ -29,4 +29,14 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+    public function showRegister()
+    {
+        return "register";
+    }
+
+    public function register()
+    {
+        return "register";
+    }
 }

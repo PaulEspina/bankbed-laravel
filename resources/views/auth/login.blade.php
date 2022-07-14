@@ -9,6 +9,9 @@
             <form class="form-container mt-5 border p-4 bg-light shadow" method="POST" action="/login">
             @csrf
                 <h1>Login</h1>
+                @foreach ($errors->all() as $error)
+                    <li class="alert alert-danger">{{ $error }}</li>
+                @endforeach
                 <div class="form-floating my-3">
                     <input type="input" class="form-control" id="floatingInput" placeholder="name@example.com" name="username">
                     <label for="floatingInput">Username</label>
@@ -17,9 +20,11 @@
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                     <label for="floatingPassword">Password</label>
                 </div>
+                <div class="row">
+                </div>
                 <div class="d-grid gap-2">
                     <button class="btn btn-primary" type="submit">Login</button>
-                    {{-- <button class="btn btn-primary" type="button" onclick="location.href='register.html'">Register</button> --}}
+                    <a href="{{ route('show-register') }}" class="btn btn-primary" type="button">Register</a>
                 </div>
             </form>
         </div>

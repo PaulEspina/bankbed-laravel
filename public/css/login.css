@@ -1,6 +1,5 @@
 .bg {
-    background: rgb(37,205,181);
-    background: linear-gradient(315deg, rgba(37,205,181,1) 0%, rgba(0,48,255,1) 100%);
+    background-image: url("../auth/LoginBG.jpg");
     width: 100%;
     height: 100vh;
     background-size: 100%;

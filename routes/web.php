@@ -20,7 +20,8 @@ use App\Http\Controllers\Dashboard\TransactionController;
 |
 */
 
-Route::get('login', [AuthController::class, 'showLogin'])->name('showLogin');
+Route::get('register', [AuthController::class, 'showRegister'])->name('show-register');
+Route::get('login', [AuthController::class, 'showLogin'])->name('show-login');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 

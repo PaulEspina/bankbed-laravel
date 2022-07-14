@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="mb-3 col-md">
                             <label for="middle_name">Middle Name</label>
-                            {{Form::text('middle_name', null, ['class' => 'form-control', 'placeholder' => 'Ex. '])}}
+                            {{Form::text('middle_name', null, ['class' => 'form-control', 'placeholder' => 'Ex. Bugayong'])}}
                         </div>
                     </div>
                     <div class="row">

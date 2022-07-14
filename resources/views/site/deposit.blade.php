@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="signup-form">
-                {{Form::open(['route' => 'site.deposit.submit', 'class' => 'form-container mt-5 border p-4 bg-light shado'])}}
+                {{Form::open(['route' => 'site.deposit.submit', 'class' => 'form-container mt-5 border p-4 bg-light shadow'])}}
                     <a href="{{ route('site.index') }}"><button type="button" class="btn-close" aria-label="Close"></button></a>
                     <h3 class="my-3 text-secondary">Deposit</h3>
                     @if(Session::has('message'))

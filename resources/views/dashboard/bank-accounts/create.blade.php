@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="mb-3 col-md">
                             <label for="user_id">User ID<span class="text-danger">*</span></label>
-                            {{Form::text('user_id', null, ['class' => 'form-control', 'placeholder' => 'Ex. 69'], 'required')}}
+                            {{Form::text('user_id', null, ['class' => 'form-control', 'placeholder' => 'Ex. 69', 'required'])}}
                         </div>
                     </div>
                     <div class="row">

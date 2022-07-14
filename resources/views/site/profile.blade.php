@@ -18,10 +18,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($bankAccounts as $key => $bankAccount)
                             <tr>
-                                <td>2022-000007-0</td>
-                                <td>2225.00</td>
+                                <td>{{$bankAccount->account_number}}</td>
+                                <td>{{$bankAccount->balance}}</td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="100%">---</td>
+                            </tr>
+                             @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -31,21 +37,27 @@
                             <tr>
                                 <th>Sender</th>
                                 <th>Receiver</th>
-                                <th>Account</th>
+                                <th>Amount</th>
                                 <th>Running Balance</th>
                                 <th>Type</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($transactions as $key => $transaction)
                             <tr>
-                                <td>2022-000006-0</td>
-                                <td>2022-000007-0</td>
-                                <td>2225.00</td>
-                                <td>2225.00</td>
-                                <td>Transfer</td>
-                                <td>06/30/2022</td>
+                                <td>{{$transaction->sender ?? "NULL "}}</td>
+                                <td>{{$transaction->receiver ?? "NULL "}}</td>
+                                <td>{{$transaction->amount}}</td>
+                                <td>{{$transaction->running_balance}}</td>
+                                <td>{{$transaction->type}}</td>
+                                <td>{{$transaction->created_at}}</td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="100%">---</td>
+                            </tr>
+                             @endforelse
                         </tbody>
                     </table>
                 </div>

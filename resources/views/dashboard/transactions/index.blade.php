@@ -22,7 +22,11 @@
             @forelse ($transactions as $key => $transaction)
             <tr key ={{ $key }}>
                 <td>{{ $transaction->id }}</td>
-                <td>{{ $transaction->username }}</td>
+                @if(isset($transaction->user))
+                    <td>{{ $transaction->user->username }}</td>
+                @else
+                    <td>User ID {{ $transaction->user_id }} (Deleted)</td>
+                @endif
                 <td>{{ $transaction->sender }}</td>
                 <td>{{ $transaction->receiver }}</td>
                 <td>{{ $transaction->amount }}</td>

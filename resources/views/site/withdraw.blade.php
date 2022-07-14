@@ -24,7 +24,7 @@
                             <label for="amount">Amount</label>
                         </div>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="submit">DEPOSIT</button>
+                            <button class="btn btn-primary" type="submit">WITHDRAW</button>
                         </div>
                     </div>
                 {{Form::close()}}

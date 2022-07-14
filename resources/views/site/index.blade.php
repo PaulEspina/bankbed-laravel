@@ -12,7 +12,6 @@
         </header>
         <h3>{{ Auth::user()->first_name . " " . (Auth::user()->middle_name ? Auth::user()->middle_name . " " : "") . Auth::user()->last_name }}</h3>
         <div class="desc">
-            <p class="Name"><b>Welcome {{ Auth::user()->username }}!</b></p>
             <a href="{{ route('site.profile') }}" class="btn btn-primary">Profile</a>
             <a href="{{ route('site.withdraw') }}" class="btn btn-primary">Withdraw</a>
             <a href="{{ route('site.deposit') }}" class="btn btn-primary">Deposit</a>

@@ -7,9 +7,11 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="form-fields">
-                <form method="POST" action="{{ route('dashboard.bank-accounts.store') }}" class="form-container mt-5 border p-4 bg-light shadow">
-                @csrf
+                {{ Form::open(['route' => 'dashboard.bank-accounts.store', 'method' => 'POST', 'class' => 'form-container mt-5 border p-4 bg-light shadow']) }}
                     <h3 class="mb-3 text-secondary">Create Bank Account</h3>
+                    @foreach ($errors->all() as $error)
+                        <li class="alert alert-danger">{{ $error }}</li>
+                    @endforeach
                     <div class="row">
                         <div class="mb-3 col-md">
                             <label>User ID<span class="text-danger">*</span></label>
@@ -42,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                {{ Form::close() }}
             </div>
         </div>
     </div>

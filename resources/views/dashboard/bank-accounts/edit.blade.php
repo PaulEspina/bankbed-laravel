@@ -7,9 +7,11 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="form-fields">
-                <form method="POST" action="{{ route('dashboard.bank-accounts.update', $bankAccount->id) }}" class="form-container mt-5 border p-4 bg-light shadow">
-                @csrf
+                {{ Form::model($bankAccount, ['route' => ['dashboard.bank-accounts.update', $bankAccount->id], 'method' => 'patch', 'class' => 'form-container mt-5 border p-4 bg-light shadow']) }}
                     <h3 class="mb-3 text-secondary">Edit Bank Account</h3>
+                    @foreach ($errors->all() as $error)
+                        <li class="alert alert-danger">{{ $error }}</li>
+                    @endforeach
                     <div class="row">
                         <div class="mb-3 col-md">
                             <label>User ID</label>
@@ -19,13 +21,13 @@
                     <div class="row">
                         <div class="mb-3 col-md">
                             <label>Account Number</label>
-                            <input type="text" name="account_number" class="form-control" placeholder="Ex. 2022-321123-0" value="{{ $bankAccount->account_number  }}">
+                            <input type="text" name="account_number" class="form-control" placeholder="Ex. 2022-321123-0" value="{{ $bankAccount->account_number }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md">
                             <label>Balance</label>
-                            <input type="number" step="any" name="balance" class="form-control" placeholder="Ex. 200.50" value="{{ $bankAccount->balance  }}">
+                            <input type="number" step="any" name="balance" class="form-control" placeholder="Ex. 200.50" value="{{ $bankAccount->balance }}">
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -42,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                {{ Form::close() }}
             </div>
         </div>
     </div>

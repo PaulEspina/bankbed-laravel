@@ -1,6 +1,6 @@
 @extends('layouts.app')
  
-@section('title', 'Bank Accounts')
+@section('title', 'Show Bank Account')
  
 @section('content')
     <h1>Show Bank Account</h1>

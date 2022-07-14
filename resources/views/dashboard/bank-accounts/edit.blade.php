@@ -1,6 +1,6 @@
 @extends('layouts.app')
  
-@section('title', 'Bank Accounts')
+@section('title', 'Edit Bank Account')
  
 @section('content')
 <div class="container-fluid bg">

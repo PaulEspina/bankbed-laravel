@@ -1,84 +1,65 @@
 @extends('layouts.app')
  
-@section('title', 'Welcome')
+@section('title', 'Profile')
  
 @section('content')
-    <div>
-        <h1>Profile</h1>
-        <button>
-            <a href="{{ route('site.index') }}">Back</a>
-        </button>
-        
-        <div>
-            <label><strong>Username</strong></label>
-            <p>{{ Auth::user()->username }}</p>
-        </div>
-        <div>
-            <label><strong>First Name</strong></label>
-            <p>{{ Auth::user()->first_name }}</p>
-        </div>
-        <div>
-            @if(Auth::user()->middle_name)
-            <label><strong>Middle Name</strong></label>
-            <p>{{ Auth::user()->middle_name }}</p>
-            @endif
-        </div>
-        <div>
-            <label><strong>Last Name</strong></label>
-            <p>{{ Auth::user()->last_name }}</p>
+<div class="container-fluid bg">
+    <div class="row">
+        <div class="col-md" style="width:1000px">
+            <div class="form-container mt-5 border p-5 bg-light shadow">
+                <a href="{{ route('site.index') }}"><button type="button" class="btn-close" aria-label="Close"></button></a>
+                <h3 class="my-3 text-secondary">{{ Auth::user()->first_name . " " . (Auth::user()->middle_name ? Auth::user()->middle_name . " " : "") . Auth::user()->last_name }} ({{ Auth::user()->username }})</h3>
+                <div class="row header_fixed mb-3">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Account Number</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2022-000007-0</td>
+                                <td>2225.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row header_fixed mb-3">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sender</th>
+                                <th>Receiver</th>
+                                <th>Account</th>
+                                <th>Running Balance</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2022-000006-0</td>
+                                <td>2022-000007-0</td>
+                                <td>2225.00</td>
+                                <td>2225.00</td>
+                                <td>Transfer</td>
+                                <td>06/30/2022</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    <div>
-        <h3>Bank Accounts</h3>
-        <table>
-            <thead>
-                <tr>
-                <th>Account Number</th>
-                <th>Balance</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($bankAccounts as $bankAccount)
-                <td>{{ $bankAccount->account_number }}</td>
-                <td>{{ $bankAccount->balance }}</td>
-                </tr>
-                @empty
-                <tr>
-                <td colspan="100%">---</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <h3>Transaction History</h3>
-        <table>
-            <thead>
-                <tr>
-                <th>Sender</th>
-                <th>Receiver</th>
-                <th>Amount</th>
-                <th>Running Balance</th>
-                <th>Type</th>
-                <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($transactions as $key => $transaction)
-                <tr key={{ $key }}>
-                <td>{{ $transaction->sender }}</td>
-                <td>{{ $transaction->receiver }}</td>
-                <td>{{ $transaction->amount }}</td>
-                <td>{{ $transaction->running_balance }}</td>
-                <td>{{ $transaction->type }}</td>
-                <td>{{ date_format($transaction->created_at,'m/d/Y') }}</td>
-                </tr>
-                @empty
-                <tr>
-                <td colspan="100%">---</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+</div>
+
+@push('head')
+    <link rel="stylesheet" href="{{ asset('css/table_style.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/card.css')}}" />
+@endpush
+
+@push('scripts')
+@endpush
+
 @endsection

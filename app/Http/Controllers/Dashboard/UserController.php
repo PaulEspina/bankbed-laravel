@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use DB;
+use Auth;
 
 use App\Models\User;
 use App\Http\Requests\Dashboard\Users\StoreUserRequest;
@@ -11,6 +12,18 @@ use App\Http\Requests\Dashboard\Users\UpdateUserRequest;
 
 class UserController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->role != 'admin')
+            {
+                return redirect('/');
+            }
+    
+            return $next($request);
+        });
+    }
+
     public function index()
     {
         return view('dashboard.users.index')->with(['users' => User::all()]);

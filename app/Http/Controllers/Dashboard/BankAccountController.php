@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use DB;
+use Auth;
 
 use App\Models\BankAccount;
 use App\Classes\GenerateAccountNumber;
@@ -12,6 +13,18 @@ use App\Http\Requests\Dashboard\BankAccounts\UpdateBankAccountRequest;
 
 class BankAccountController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->role != 'admin')
+            {
+                return redirect('/');
+            }
+    
+            return $next($request);
+        });
+    }
+
     public function index()
     {
         return view('dashboard.bank-accounts.index')->with(['bankAccounts' => BankAccount::all()]);

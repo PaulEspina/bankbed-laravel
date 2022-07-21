@@ -8,7 +8,7 @@
         <div class="col-md-6 offset-md-3">
             {{Form::open(['route' => 'site.transfer.submit', 'class' => 'form-container mt-5 border p-4 bg-light shadow'])}}
                 <a href="{{ route('site.index') }}"><button type="button" class="btn-close" aria-label="Close"></button></a>
-                <h3 class="my-3 text-secondary">Withdraw</h3>
+                <h3 class="my-3 text-secondary">Transfer</h3>
                 @if(Session::has('message'))
                     <p class="alert alert-success">{{Session::get('message')}}</p>
                 @endif

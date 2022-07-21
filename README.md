@@ -1,9 +1,10 @@
-admin accounts:
+CS0035 Final Project
 
-admin_espina
-admin_punzalan
-admin_luna
-admin_conales
-admin_amis
+admin accounts:
+admin_espina,
+admin_punzalan,
+admin_luna,
+admin_conales,
+admin_amis,
 
 password is surname ng account
